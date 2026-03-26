@@ -1,0 +1,54 @@
+/* =============================================
+   CUSTOM CURSOR
+   ============================================= */
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  transition: opacity var(--transition-fast);
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--clr-accent-2);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--clr-accent-1);
+  transform: translate(-50%, -50%);
+  transition: width var(--transition-spring),
+              height var(--transition-spring),
+              border-color var(--transition-fast),
+              opacity var(--transition-fast);
+}
+
+/* Hover state */
+body.cursor-hover .cursor-ring {
+  width: 56px;
+  height: 56px;
+  border-color: var(--clr-accent-2);
+  background: rgba(6, 182, 212, 0.08);
+}
+
+body.cursor-hover .cursor-dot {
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+
+/* Hide on mobile/touch */
+@media (hover: none) {
+  .cursor-dot, .cursor-ring { display: none; }
+  body { cursor: auto; }
+}

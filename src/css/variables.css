@@ -1,0 +1,79 @@
+/* =============================================
+   DESIGN TOKENS — All visual values live here
+   ============================================= */
+
+:root {
+  /* --- Colors --- */
+  --clr-bg:         #0d0d14;
+  --clr-surface:    #14141f;
+  --clr-surface-2:  #1c1c2e;
+  --clr-border:     rgba(255,255,255,0.06);
+
+  --clr-text:       #e8e6f0;
+  --clr-text-muted: #7b789a;
+
+  /* Accent — vivid violet-to-cyan gradient */
+  --clr-accent-1:   #7c3aed;   /* violet */
+  --clr-accent-2:   #06b6d4;   /* cyan   */
+  --clr-accent-glow:rgba(124, 58, 237, 0.35);
+
+  /* Gamification */
+  --clr-xp:         #f59e0b;   /* gold XP */
+  --clr-success:    #10b981;
+  --clr-danger:     #ef4444;
+
+  /* --- Typography --- */
+  --font-mono:      'JetBrains Mono', 'Fira Code', monospace;
+  --font-sans:      'Inter', system-ui, sans-serif;
+  --font-display:   'Space Grotesk', var(--font-sans);
+
+  --fs-xs:   clamp(0.75rem,  1.5vw, 0.875rem);
+  --fs-sm:   clamp(0.875rem, 2vw,   1rem);
+  --fs-base: clamp(1rem,     2.5vw, 1.125rem);
+  --fs-lg:   clamp(1.125rem, 3vw,   1.375rem);
+  --fs-xl:   clamp(1.5rem,   4vw,   2rem);
+  --fs-2xl:  clamp(2rem,     6vw,   3.5rem);
+  --fs-3xl:  clamp(3rem,     9vw,   6rem);
+
+  /* --- Spacing --- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* --- Layout --- */
+  --max-width: 1100px;
+  --nav-height: 4rem;
+
+  /* --- Effects --- */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  --shadow-glow: 0 0 40px var(--clr-accent-glow);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+
+  --transition-fast:   150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base:   300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:   600ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Light mode override */
+[data-theme="light"] {
+  --clr-bg:         #f5f4fc;
+  --clr-surface:    #ffffff;
+  --clr-surface-2:  #eeedf8;
+  --clr-border:     rgba(0,0,0,0.08);
+  --clr-text:       #1a1830;
+  --clr-text-muted: #6b6886;
+  --clr-accent-glow:rgba(124, 58, 237, 0.2);
+  --shadow-card:    0 4px 24px rgba(0,0,0,0.08);
+}

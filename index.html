@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio — Developer with a passion for crafting great user experiences." />
+  <title>Dev Portfolio</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="src/css/variables.css" />
+  <link rel="stylesheet" href="src/css/reset.css" />
+  <link rel="stylesheet" href="src/css/cursor.css" />
+  <link rel="stylesheet" href="src/css/nav.css" />
+  <link rel="stylesheet" href="src/css/hero.css" />
+  <link rel="stylesheet" href="src/css/components.css" />
+  <link rel="stylesheet" href="src/css/sections.css" />
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor-dot"  aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Toast notifications -->
+  <div class="toast-container" aria-live="polite" aria-label="Achievement notifications"></div>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="#hero" class="nav__logo" aria-label="Back to top">&lt;DEV /&gt;</a>
+
+    <ul class="nav__links" role="list">
+      <li><a href="#about"    class="nav__link">About</a></li>
+      <li><a href="#skills"   class="nav__link">Skills</a></li>
+      <li><a href="#projects" class="nav__link">Projects</a></li>
+      <li><a href="#contact"  class="nav__link">Contact</a></li>
+    </ul>
+
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <div class="nav__xp" title="Your XP points — keep exploring!">
+        ⚡ <span class="nav__xp-value">0 XP</span>
+      </div>
+      <button class="nav__theme-btn" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero" class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
+    <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow">Welcome to my portfolio</p>
+
+      <h1 class="hero__name">
+        Hi, I'm <span class="accent">Your Name</span>
+      </h1>
+
+      <p class="hero__role">
+        I'm a <span class="typed-text"></span><span class="cursor-blink" aria-hidden="true"></span>
+      </p>
+
+      <p class="hero__desc">
+        I build fast, accessible, and beautiful digital experiences.
+        From backend architecture to pixel-perfect frontends — I ship things that matter.
+      </p>
+
+      <div class="hero__cta">
+        <a href="#projects" class="btn btn--primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          View Projects
+        </a>
+        <a href="#contact" class="btn btn--ghost">
+          Get in Touch
+        </a>
+      </div>
+
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <div class="hero__stat-value" data-count="3">3+</div>
+          <div class="hero__stat-label">Years Exp.</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-value" data-count="20">20+</div>
+          <div class="hero__stat-label">Projects</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-value" data-count="10">10+</div>
+          <div class="hero__stat-label">Technologies</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <div class="hero__scroll-line"></div>
+      <span>scroll</span>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about">
+    <div class="section">
+      <header class="section__header reveal">
+        <p class="section__tag">// about me</p>
+        <h2 class="section__title">Who I <span class="outline">Am</span></h2>
+      </header>
+
+      <div class="about">
+        <div class="about__text reveal">
+          <p>
+            I'm a <strong>developer based in Brazil</strong> with a passion for building
+            things that live on the internet. I care deeply about performance,
+            accessibility, and the small details that make a product feel <em>alive</em>.
+          </p>
+          <p>
+            When I'm not coding I'm probably playing games, tinkering with side projects,
+            or finding new ways to procrastinate productively.
+          </p>
+          <p>
+            I believe great software is built at the intersection of
+            <strong>technical excellence</strong> and <strong>genuine empathy</strong> for the user.
+          </p>
+          <div style="margin-top:2rem;">
+            <a href="#contact" class="btn btn--primary" style="display:inline-flex;">
+              Let's work together
+            </a>
+          </div>
+        </div>
+
+        <div class="about__avatar reveal--right reveal">
+          <div class="about__avatar-frame">
+            <div class="about__avatar-inner">
+              <!-- Replace with <img src="..." alt="Your name" /> -->
+              🧑‍💻
+            </div>
+          </div>
+          <div class="about__badge">
+            <span class="dot"></span>
+            Available for work
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills">
+    <div class="section">
+      <header class="section__header reveal">
+        <p class="section__tag">// stack</p>
+        <h2 class="section__title">What I <span class="outline">Use</span></h2>
+      </header>
+
+      <!-- Gamification XP panel -->
+      <div class="xp-panel reveal">
+        <div class="xp-panel__header">
+          <span class="xp-panel__level">LVL 1 — Visitor</span>
+          <span class="xp-panel__points">0 / 50 XP → LVL 2</span>
+        </div>
+        <div class="xp-bar">
+          <div class="xp-bar__fill" style="width: 0%"></div>
+        </div>
+        <div class="achievements">
+          <div class="achievement" data-achievement="first_scroll">
+            <span class="emoji">📜</span> First Scroll
+          </div>
+          <div class="achievement" data-achievement="theme_toggle">
+            <span class="emoji">🌙</span> Night Owl
+          </div>
+          <div class="achievement" data-achievement="projects_seen">
+            <span class="emoji">🔭</span> Project Scout
+          </div>
+          <div class="achievement" data-achievement="github_click">
+            <span class="emoji">🐙</span> Code Curious
+          </div>
+          <div class="achievement" data-achievement="contact_open">
+            <span class="emoji">📬</span> Reaching Out
+          </div>
+          <div class="achievement" data-achievement="all_sections">
+            <span class="emoji">🗺️</span> Full Tour
+          </div>
+          <div class="achievement" data-achievement="idle_5s">
+            <span class="emoji">☕</span> Just Browsing
+          </div>
+        </div>
+      </div>
+
+      <div class="skills-grid stagger">
+        <div class="card skill-card">
+          <div class="skill-card__icon">⚡</div>
+          <div class="skill-card__name">Frontend</div>
+          <div class="skill-card__tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">React</span>
+          </div>
+        </div>
+
+        <div class="card skill-card">
+          <div class="skill-card__icon">🔧</div>
+          <div class="skill-card__name">Backend</div>
+          <div class="skill-card__tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">Python</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">GraphQL</span>
+          </div>
+        </div>
+
+        <div class="card skill-card">
+          <div class="skill-card__icon">🗄️</div>
+          <div class="skill-card__name">Database</div>
+          <div class="skill-card__tags">
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Redis</span>
+          </div>
+        </div>
+
+        <div class="card skill-card">
+          <div class="skill-card__icon">🚀</div>
+          <div class="skill-card__name">DevOps</div>
+          <div class="skill-card__tags">
+            <span class="tag">Docker</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">Linux</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects">
+    <div class="section">
+      <header class="section__header reveal">
+        <p class="section__tag">// work</p>
+        <h2 class="section__title">Featured <span class="outline">Projects</span></h2>
+      </header>
+
+      <div class="projects-grid stagger">
+        <!-- Project 1 -->
+        <article class="card project-card">
+          <div class="project-card__header">
+            <div class="project-card__icon">🛒</div>
+            <div class="project-card__links">
+              <a href="#" class="project-card__link" aria-label="GitHub repository" target="_blank" rel="noopener">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              <a href="#" class="project-card__link" aria-label="Live demo" target="_blank" rel="noopener">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-card__title">Project Name</h3>
+          <p class="project-card__desc">
+            A short description of what this project does and the problem it solves.
+            Keep it punchy and results-focused.
+          </p>
+          <div class="project-card__stack">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="card project-card">
+          <div class="project-card__header">
+            <div class="project-card__icon">📊</div>
+            <div class="project-card__links">
+              <a href="#" class="project-card__link" aria-label="GitHub repository" target="_blank" rel="noopener">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              <a href="#" class="project-card__link" aria-label="Live demo" target="_blank" rel="noopener">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-card__title">Second Project</h3>
+          <p class="project-card__desc">
+            Another impressive project with clear impact. What did you build?
+            What did you learn? What problem did it solve?
+          </p>
+          <div class="project-card__stack">
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Docker</span>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="card project-card">
+          <div class="project-card__header">
+            <div class="project-card__icon">🎮</div>
+            <div class="project-card__links">
+              <a href="#" class="project-card__link" aria-label="GitHub repository" target="_blank" rel="noopener">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              <a href="#" class="project-card__link" aria-label="Live demo" target="_blank" rel="noopener">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-card__title">Third Project</h3>
+          <p class="project-card__desc">
+            Your most fun or ambitious project. Games, tools, experiments —
+            show some personality here.
+          </p>
+          <div class="project-card__stack">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Canvas API</span>
+            <span class="tag">WebSockets</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact">
+    <div class="section">
+      <header class="section__header reveal">
+        <p class="section__tag">// contact</p>
+        <h2 class="section__title">Let's <span class="outline">Connect</span></h2>
+      </header>
+
+      <div class="contact-grid">
+        <form class="contact-form reveal" id="contact-form" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="name">Name</label>
+            <input class="form-input" type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea class="form-textarea" id="message" name="message" placeholder="What's on your mind?" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary" style="align-self:flex-start;">
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+
+        <div class="contact__socials reveal--right reveal">
+          <a href="https://github.com/BatystaG" class="social-link" target="_blank" rel="noopener noreferrer">
+            <div class="social-link__icon">🐙</div>
+            <div>
+              <div class="social-link__name">GitHub</div>
+              <div class="social-link__handle">@BatystaG</div>
+            </div>
+          </a>
+          <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
+            <div class="social-link__icon">💼</div>
+            <div>
+              <div class="social-link__name">LinkedIn</div>
+              <div class="social-link__handle">your-profile</div>
+            </div>
+          </a>
+          <a href="mailto:you@email.com" class="social-link">
+            <div class="social-link__icon">📧</div>
+            <div>
+              <div class="social-link__name">Email</div>
+              <div class="social-link__handle">you@email.com</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <p>Built with <span>♥</span> and lots of coffee &mdash; open source on
+      <a href="https://github.com/BatystaG/Portf-lio" style="color:var(--clr-accent-2);" target="_blank" rel="noopener">GitHub</a>
+    </p>
+  </footer>
+
+  <!-- Scripts (ES modules) -->
+  <script type="module" src="src/js/main.js"></script>
+
+</body>
+</html>
