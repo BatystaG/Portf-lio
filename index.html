@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="src/css/hero.css" />
   <link rel="stylesheet" href="src/css/components.css" />
   <link rel="stylesheet" href="src/css/sections.css" />
+  <link rel="stylesheet" href="src/css/hud.css" />
 </head>
 <body>
 
@@ -31,6 +32,46 @@
 
   <!-- Toast notifications -->
   <div class="toast-container" aria-live="polite" aria-label="Notificações de conquistas"></div>
+
+  <!-- Floating Game HUD -->
+  <div class="hud" id="hud" aria-label="Painel de progresso">
+    <div class="hud__panel" role="region" aria-label="Conquistas e nível">
+      <div class="hud__panel-header">
+        <span class="hud__panel-level">LVL 1 — Visitante</span>
+        <span class="hud__panel-pts">0 / 50 XP</span>
+      </div>
+      <div class="hud__bar"><div class="hud__bar-fill" style="width:0%"></div></div>
+      <div class="hud__divider"></div>
+      <div class="hud__title">Conquistas</div>
+      <div class="hud__achievements">
+        <div class="hud__achievement" data-hud-achievement="first_scroll"   data-label="Primeiro Scroll">📜</div>
+        <div class="hud__achievement" data-hud-achievement="theme_toggle"   data-label="Coruja Noturna">🌙</div>
+        <div class="hud__achievement" data-hud-achievement="projects_seen"  data-label="Explorador">🔭</div>
+        <div class="hud__achievement" data-hud-achievement="github_click"   data-label="Curioso do Código">🐙</div>
+        <div class="hud__achievement" data-hud-achievement="contact_open"   data-label="Entrando em Contato">📬</div>
+        <div class="hud__achievement" data-hud-achievement="all_sections"   data-label="Tour Completo">🗺️</div>
+        <div class="hud__achievement" data-hud-achievement="idle_5s"        data-label="Só Olhando">☕</div>
+        <div class="hud__achievement" data-hud-achievement="focused_30s"    data-label="Focado">🎯</div>
+        <div class="hud__achievement" data-hud-achievement="stack_analyzed" data-label="Stack Analisado">🏷️</div>
+        <div class="hud__achievement" data-hud-achievement="early_bird"     data-label="Madrugador">🌅</div>
+        <div class="hud__achievement" data-hud-achievement="form_started"   data-label="Formulário Iniciado">📋</div>
+        <div class="hud__achievement" data-hud-achievement="back_to_top"    data-label="De Volta ao Topo">🔝</div>
+        <div class="hud__achievement" data-hud-achievement="linkedin_click" data-label="LinkedIn Visitado">🔗</div>
+        <div class="hud__achievement" data-hud-achievement="theme_maniac"   data-label="Indeciso">🌀</div>
+        <div class="hud__achievement" data-hud-achievement="avatar_hover"   data-label="Curioso">👀</div>
+      </div>
+      <div class="hud__footer">
+        <span class="hud__count"><span class="hud-unlocked-count">0</span> / 15 desbloqueadas</span>
+      </div>
+    </div>
+
+    <button class="hud__toggle" aria-expanded="false" aria-controls="hud">
+      <span class="hud__level-badge">LVL 1</span>
+      <div class="hud__mini-bar"><div class="hud__mini-bar-fill" style="width:0%"></div></div>
+      <span class="hud__xp-text">0 XP</span>
+      <svg class="hud__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+  </div>
 
   <!-- ===================== NAVIGATION ===================== -->
   <nav class="nav" role="navigation" aria-label="Navegação principal">

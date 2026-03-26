@@ -94,30 +94,58 @@ function unlock(achievementId) {
     type:  'achievement',
   });
 
+  // Update skills section badge
   document.querySelector(`[data-achievement="${achievementId}"]`)?.classList.add('unlocked');
+  // Update floating HUD badge
+  const hudBadge = document.querySelector(`[data-hud-achievement="${achievementId}"]`);
+  if (hudBadge) {
+    hudBadge.classList.add('unlocked');
+    hudBadge.animate([
+      { transform: 'scale(1)',    filter: 'brightness(1)' },
+      { transform: 'scale(1.35)', filter: 'brightness(1.6)' },
+      { transform: 'scale(1)',    filter: 'brightness(1)' },
+    ], { duration: 500, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' });
+  }
 }
 
 function updateXPBar() {
+  const { current, next } = getLevelData(state.xp);
+  const pct = next
+    ? ((state.xp - current.xpRequired) / (next.xpRequired - current.xpRequired)) * 100
+    : 100;
+  const pctClamped = Math.min(pct, 100);
+
+  // ── Skills section XP panel ──
   const xpEl     = document.querySelector('.nav__xp-value');
   const barFill  = document.querySelector('.xp-bar__fill');
   const levelEl  = document.querySelector('.xp-panel__level');
   const pointsEl = document.querySelector('.xp-panel__points');
 
-  const { current, next } = getLevelData(state.xp);
+  if (xpEl)     xpEl.textContent     = `${state.xp} XP`;
+  if (levelEl)  levelEl.textContent  = `LVL ${current.level} — ${current.name}`;
+  if (barFill)  barFill.style.width  = `${pctClamped}%`;
+  if (pointsEl) pointsEl.textContent = next
+    ? `${state.xp} / ${next.xpRequired} XP → LVL ${next.level}`
+    : `NÍVEL MÁXIMO — ${state.xp} XP`;
 
-  if (xpEl)    xpEl.textContent  = `${state.xp} XP`;
-  if (levelEl) levelEl.textContent = `LVL ${current.level} — ${current.name}`;
+  // ── Floating HUD ──
+  const hudLevel   = document.querySelector('.hud__panel-level');
+  const hudPts     = document.querySelector('.hud__panel-pts');
+  const hudBarFill = document.querySelector('.hud__bar-fill');
+  const hudBadge   = document.querySelector('.hud__level-badge');
+  const hudMiniBar = document.querySelector('.hud__mini-bar-fill');
+  const hudXpText  = document.querySelector('.hud__xp-text');
+  const hudCount   = document.querySelector('.hud-unlocked-count');
 
-  const pct = next
-    ? ((state.xp - current.xpRequired) / (next.xpRequired - current.xpRequired)) * 100
-    : 100;
-
-  if (barFill)  barFill.style.width = `${Math.min(pct, 100)}%`;
-  if (pointsEl) {
-    pointsEl.textContent = next
-      ? `${state.xp} / ${next.xpRequired} XP → LVL ${next.level}`
-      : `NÍVEL MÁXIMO — ${state.xp} XP`;
-  }
+  if (hudLevel)   hudLevel.textContent  = `LVL ${current.level} — ${current.name}`;
+  if (hudPts)     hudPts.textContent    = next
+    ? `${state.xp} / ${next.xpRequired} XP`
+    : `${state.xp} XP — MAX`;
+  if (hudBarFill) hudBarFill.style.width  = `${pctClamped}%`;
+  if (hudBadge)   hudBadge.textContent    = `LVL ${current.level}`;
+  if (hudMiniBar) hudMiniBar.style.width  = `${pctClamped}%`;
+  if (hudXpText)  hudXpText.textContent   = `${state.xp} XP`;
+  if (hudCount)   hudCount.textContent    = state.unlocked.length;
 }
 
 function showToast({ emoji, title, desc, type = 'achievement' }) {
@@ -141,9 +169,27 @@ function showToast({ emoji, title, desc, type = 'achievement' }) {
 export function initGamification() {
   updateXPBar();
 
-  // Restore already unlocked badges
+  // Restore already unlocked badges (skills panel + HUD)
   state.unlocked.forEach(id => {
     document.querySelector(`[data-achievement="${id}"]`)?.classList.add('unlocked');
+    document.querySelector(`[data-hud-achievement="${id}"]`)?.classList.add('unlocked');
+  });
+
+  // ── HUD toggle ────────────────────────────────────────────
+  const hud    = document.getElementById('hud');
+  const toggle = hud?.querySelector('.hud__toggle');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = hud.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close HUD when clicking outside
+  document.addEventListener('click', (e) => {
+    if (hud && !hud.contains(e.target)) {
+      hud.classList.remove('open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    }
   });
 
   // ── First scroll ──────────────────────────────────────────
