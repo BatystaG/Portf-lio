@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
   animateHero();
 
   initTypewriter('.typed-text', [
-    'Full Stack Developer',
-    'UI/UX Enthusiast',
-    'Problem Solver',
-    'Open Source Fan',
+    'Desenvolvedor Full Stack',
+    'Entusiasta de UI/UX',
+    'Solucionador de Problemas',
+    'Fã de Open Source',
   ]);
 
   initGamification();

@@ -6,21 +6,21 @@
  */
 
 const LEVELS = [
-  { level: 1, name: 'Visitor',    xpRequired: 0   },
-  { level: 2, name: 'Explorer',   xpRequired: 50  },
-  { level: 3, name: 'Enthusiast', xpRequired: 150 },
-  { level: 4, name: 'Fan',        xpRequired: 300 },
-  { level: 5, name: 'Super Fan',  xpRequired: 500 },
+  { level: 1, name: 'Visitante',   xpRequired: 0   },
+  { level: 2, name: 'Explorador',  xpRequired: 50  },
+  { level: 3, name: 'Entusiasta',  xpRequired: 150 },
+  { level: 4, name: 'Fã',          xpRequired: 300 },
+  { level: 5, name: 'Super Fã',    xpRequired: 500 },
 ];
 
 const ACHIEVEMENTS = [
-  { id: 'first_scroll',   emoji: '📜', title: 'First Scroll',      desc: 'Started exploring',         xp: 10  },
-  { id: 'projects_seen',  emoji: '🔭', title: 'Project Scout',     desc: 'Checked out the projects',  xp: 30  },
-  { id: 'contact_open',   emoji: '📬', title: 'Reaching Out',      desc: 'Opened the contact section',xp: 20  },
-  { id: 'theme_toggle',   emoji: '🌙', title: 'Night Owl',         desc: 'Switched the theme',        xp: 15  },
-  { id: 'all_sections',   emoji: '🗺️', title: 'Full Tour',         desc: 'Visited every section',     xp: 50  },
-  { id: 'idle_5s',        emoji: '☕', title: 'Just Browsing',     desc: 'Taking your time...',       xp: 5   },
-  { id: 'github_click',   emoji: '🐙', title: 'Code Curious',      desc: 'Checked out the GitHub',   xp: 25  },
+  { id: 'first_scroll',   emoji: '📜', title: 'Primeiro Scroll',      desc: 'Começou a explorar',             xp: 10  },
+  { id: 'projects_seen',  emoji: '🔭', title: 'Explorador',           desc: 'Conferiu os projetos',           xp: 30  },
+  { id: 'contact_open',   emoji: '📬', title: 'Entrando em Contato',  desc: 'Abriu a seção de contato',       xp: 20  },
+  { id: 'theme_toggle',   emoji: '🌙', title: 'Coruja Noturna',       desc: 'Trocou o tema',                  xp: 15  },
+  { id: 'all_sections',   emoji: '🗺️', title: 'Tour Completo',        desc: 'Visitou todas as seções',        xp: 50  },
+  { id: 'idle_5s',        emoji: '☕', title: 'Só Olhando',           desc: 'Aproveitando o tempo...',        xp: 5   },
+  { id: 'github_click',   emoji: '🐙', title: 'Curioso do Código',    desc: 'Conferiu o GitHub',              xp: 25  },
 ];
 
 const state = {
@@ -56,8 +56,8 @@ function addXP(amount) {
   if (after.level > before.level) {
     showToast({
       emoji: '⬆️',
-      title: `Level ${after.level} — ${after.name}!`,
-      desc:  `You leveled up! Keep exploring.`,
+      title: `Nível ${after.level} — ${after.name}!`,
+      desc:  `Você subiu de nível! Continue explorando.`,
       type:  'level-up',
     });
   }
@@ -76,7 +76,7 @@ function unlock(achievementId) {
 
   showToast({
     emoji: achievement.emoji,
-    title: `Achievement: ${achievement.title}`,
+    title: `Conquista: ${achievement.title}`,
     desc:  `+${achievement.xp} XP — ${achievement.desc}`,
     type:  'achievement',
   });
@@ -105,7 +105,7 @@ function updateXPBar() {
   if (pointsEl) {
     pointsEl.textContent = next
       ? `${state.xp} / ${next.xpRequired} XP → LVL ${next.level}`
-      : `MAX LEVEL — ${state.xp} XP`;
+      : `NÍVEL MÁXIMO — ${state.xp} XP`;
   }
 }
 

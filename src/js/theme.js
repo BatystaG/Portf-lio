@@ -19,7 +19,7 @@ export function initTheme() {
 
   function applyTheme(t) {
     html.dataset.theme = t;
-    if (btn) btn.setAttribute('aria-label', `Switch to ${t === 'dark' ? 'light' : 'dark'} mode`);
+    if (btn) btn.setAttribute('aria-label', `Alternar para modo ${t === 'dark' ? 'claro' : 'escuro'}`);
     updateIcon(t);
   }
 
