@@ -110,8 +110,50 @@
 }
 
 .skill-card__icon {
-  font-size: 2rem;
   margin-bottom: var(--space-4);
+}
+
+/* Gamified icon badge */
+.skill-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform var(--transition-spring), box-shadow var(--transition-base);
+}
+
+.skill-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0.12;
+}
+
+.skill-icon--violet {
+  color: var(--clr-accent-1);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  box-shadow: 0 0 16px rgba(124, 58, 237, 0.15), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.skill-icon--violet::before { background: var(--clr-accent-1); }
+
+.skill-icon--cyan {
+  color: var(--clr-accent-2);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.15), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.skill-icon--cyan::before { background: var(--clr-accent-2); }
+
+.card:hover .skill-icon--violet {
+  transform: scale(1.08);
+  box-shadow: 0 0 28px rgba(124, 58, 237, 0.35);
+}
+.card:hover .skill-icon--cyan {
+  transform: scale(1.08);
+  box-shadow: 0 0 28px rgba(6, 182, 212, 0.35);
 }
 
 .skill-card__name {
@@ -146,15 +188,12 @@
 }
 
 .project-card__icon {
-  font-size: 1.8rem;
-  background: var(--clr-surface-2);
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-md);
-  border: 1px solid var(--clr-border);
 }
 
 .project-card__links {
@@ -390,8 +429,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--fs-lg);
   flex-shrink: 0;
+  color: var(--clr-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.social-link:hover .social-link__icon {
+  color: var(--clr-accent-2);
 }
 
 .social-link__name {
