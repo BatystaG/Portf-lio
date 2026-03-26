@@ -14,25 +14,39 @@ const LEVELS = [
 ];
 
 const ACHIEVEMENTS = [
-  { id: 'first_scroll',   emoji: '📜', title: 'Primeiro Scroll',      desc: 'Começou a explorar',             xp: 10  },
-  { id: 'projects_seen',  emoji: '🔭', title: 'Explorador',           desc: 'Conferiu os projetos',           xp: 30  },
-  { id: 'contact_open',   emoji: '📬', title: 'Entrando em Contato',  desc: 'Abriu a seção de contato',       xp: 20  },
-  { id: 'theme_toggle',   emoji: '🌙', title: 'Coruja Noturna',       desc: 'Trocou o tema',                  xp: 15  },
-  { id: 'all_sections',   emoji: '🗺️', title: 'Tour Completo',        desc: 'Visitou todas as seções',        xp: 50  },
-  { id: 'idle_5s',        emoji: '☕', title: 'Só Olhando',           desc: 'Aproveitando o tempo...',        xp: 5   },
-  { id: 'github_click',   emoji: '🐙', title: 'Curioso do Código',    desc: 'Conferiu o GitHub',              xp: 25  },
+  // --- Originais ---
+  { id: 'first_scroll',    emoji: '📜', title: 'Primeiro Scroll',     desc: 'Começou a explorar',                xp: 10 },
+  { id: 'projects_seen',   emoji: '🔭', title: 'Explorador',          desc: 'Conferiu os projetos',              xp: 30 },
+  { id: 'contact_open',    emoji: '📬', title: 'Entrando em Contato', desc: 'Abriu a seção de contato',          xp: 20 },
+  { id: 'theme_toggle',    emoji: '🌙', title: 'Coruja Noturna',      desc: 'Trocou o tema',                     xp: 15 },
+  { id: 'all_sections',    emoji: '🗺️', title: 'Tour Completo',       desc: 'Visitou todas as seções',           xp: 50 },
+  { id: 'idle_5s',         emoji: '☕', title: 'Só Olhando',          desc: 'Aproveitando o tempo...',           xp: 5  },
+  { id: 'github_click',    emoji: '🐙', title: 'Curioso do Código',   desc: 'Conferiu o GitHub',                 xp: 25 },
+  // --- Novos ---
+  { id: 'focused_30s',     emoji: '🎯', title: 'Focado',              desc: 'Ficou 30s em uma seção',            xp: 20 },
+  { id: 'stack_analyzed',  emoji: '🏷️', title: 'Stack Analisado',    desc: 'Explorou todas as tags de skill',   xp: 25 },
+  { id: 'early_bird',      emoji: '🌅', title: 'Madrugador',          desc: 'Acessou entre 00h e 06h',           xp: 30 },
+  { id: 'form_started',    emoji: '📋', title: 'Formulário Iniciado', desc: 'Começou a preencher o contato',     xp: 15 },
+  { id: 'back_to_top',     emoji: '🔝', title: 'De Volta ao Topo',    desc: 'Clicou no logo para voltar',        xp: 10 },
+  { id: 'linkedin_click',  emoji: '🔗', title: 'LinkedIn Visitado',   desc: 'Conferiu o LinkedIn',               xp: 20 },
+  { id: 'theme_maniac',    emoji: '🌀', title: 'Indeciso',             desc: 'Trocou o tema 3 vezes',             xp: 15 },
+  { id: 'avatar_hover',    emoji: '👀', title: 'Curioso',             desc: 'Passou o mouse na foto',            xp: 10 },
 ];
 
 const state = {
-  xp:           parseInt(sessionStorage.getItem('xp') || '0'),
-  level:        1,
-  unlocked:     JSON.parse(sessionStorage.getItem('unlocked') || '[]'),
-  visited:      new Set(),
+  xp:            parseInt(sessionStorage.getItem('xp') || '0'),
+  level:         1,
+  unlocked:      JSON.parse(sessionStorage.getItem('unlocked') || '[]'),
+  visited:       new Set(),
+  themeToggleCount: parseInt(sessionStorage.getItem('themeCount') || '0'),
+  hoveredTags:   new Set(JSON.parse(sessionStorage.getItem('hoveredTags') || '[]')),
 };
 
 function save() {
-  sessionStorage.setItem('xp',       state.xp);
-  sessionStorage.setItem('unlocked', JSON.stringify(state.unlocked));
+  sessionStorage.setItem('xp',          state.xp);
+  sessionStorage.setItem('unlocked',    JSON.stringify(state.unlocked));
+  sessionStorage.setItem('themeCount',  state.themeToggleCount);
+  sessionStorage.setItem('hoveredTags', JSON.stringify([...state.hoveredTags]));
 }
 
 function getLevelData(xp) {
@@ -52,7 +66,6 @@ function addXP(amount) {
 
   const after = getLevelData(state.xp).current;
 
-  // Level up!
   if (after.level > before.level) {
     showToast({
       emoji: '⬆️',
@@ -81,9 +94,7 @@ function unlock(achievementId) {
     type:  'achievement',
   });
 
-  // Update badge UI
-  const badge = document.querySelector(`[data-achievement="${achievementId}"]`);
-  badge?.classList.add('unlocked');
+  document.querySelector(`[data-achievement="${achievementId}"]`)?.classList.add('unlocked');
 }
 
 function updateXPBar() {
@@ -94,14 +105,14 @@ function updateXPBar() {
 
   const { current, next } = getLevelData(state.xp);
 
-  if (xpEl)     xpEl.textContent = `${state.xp} XP`;
-  if (levelEl)  levelEl.textContent = `LVL ${current.level} — ${current.name}`;
+  if (xpEl)    xpEl.textContent  = `${state.xp} XP`;
+  if (levelEl) levelEl.textContent = `LVL ${current.level} — ${current.name}`;
 
   const pct = next
     ? ((state.xp - current.xpRequired) / (next.xpRequired - current.xpRequired)) * 100
     : 100;
 
-  if (barFill) barFill.style.width = `${Math.min(pct, 100)}%`;
+  if (barFill)  barFill.style.width = `${Math.min(pct, 100)}%`;
   if (pointsEl) {
     pointsEl.textContent = next
       ? `${state.xp} / ${next.xpRequired} XP → LVL ${next.level}`
@@ -124,8 +135,6 @@ function showToast({ emoji, title, desc, type = 'achievement' }) {
   `;
 
   container.appendChild(toast);
-
-  // Remove after animation (toastOut is 0.4s at 3s delay)
   setTimeout(() => toast.remove(), 3600);
 }
 
@@ -137,46 +146,89 @@ export function initGamification() {
     document.querySelector(`[data-achievement="${id}"]`)?.classList.add('unlocked');
   });
 
-  // --- Triggers ---
+  // ── First scroll ──────────────────────────────────────────
+  window.addEventListener('scroll', () => unlock('first_scroll'), { passive: true, once: true });
 
-  // First scroll
-  const firstScrollHandler = () => {
-    unlock('first_scroll');
-    window.removeEventListener('scroll', firstScrollHandler);
-  };
-  window.addEventListener('scroll', firstScrollHandler, { passive: true, once: true });
-
-  // Theme toggle
+  // ── Theme toggle ──────────────────────────────────────────
   document.querySelector('.nav__theme-btn')?.addEventListener('click', () => {
     unlock('theme_toggle');
+    state.themeToggleCount++;
+    save();
+    if (state.themeToggleCount >= 3) unlock('theme_maniac');
   });
 
-  // GitHub link click
-  document.querySelectorAll('a[href*="github.com"]').forEach(el => {
-    el.addEventListener('click', () => unlock('github_click'), { once: true });
+  // ── Logo → back to top ────────────────────────────────────
+  document.querySelector('.nav__logo')?.addEventListener('click', () => unlock('back_to_top'));
+
+  // ── GitHub click ──────────────────────────────────────────
+  document.querySelectorAll('a[href*="github.com"]').forEach(el =>
+    el.addEventListener('click', () => unlock('github_click'), { once: true })
+  );
+
+  // ── LinkedIn click ────────────────────────────────────────
+  document.querySelectorAll('a[href*="linkedin.com"]').forEach(el =>
+    el.addEventListener('click', () => unlock('linkedin_click'), { once: true })
+  );
+
+  // ── Avatar hover ──────────────────────────────────────────
+  document.querySelector('.about__avatar-inner')?.addEventListener('mouseenter', () => {
+    unlock('avatar_hover');
+  }, { once: true });
+
+  // ── Form started ──────────────────────────────────────────
+  document.querySelectorAll('#contact-form input, #contact-form textarea').forEach(el =>
+    el.addEventListener('input', () => unlock('form_started'), { once: true })
+  );
+
+  // ── Early bird (00h–06h) ──────────────────────────────────
+  const hour = new Date().getHours();
+  if (hour >= 0 && hour < 6) unlock('early_bird');
+
+  // ── Stack analyzed — hover all skill tags ─────────────────
+  const allTags = document.querySelectorAll('.skills-grid .tag');
+  const totalTags = allTags.length;
+
+  allTags.forEach(tag => {
+    tag.addEventListener('mouseenter', () => {
+      state.hoveredTags.add(tag.textContent.trim());
+      save();
+      if (state.hoveredTags.size >= totalTags) unlock('stack_analyzed');
+    });
   });
 
-  // Track section visits
+  // ── Section visits + Full tour + Focused 30s ─────────────
   const sectionMap = {
     projects: 'projects_seen',
     contact:  'contact_open',
   };
 
+  const sectionTimers = {};
+
   const visitObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
       const id = entry.target.id;
-      if (sectionMap[id]) unlock(sectionMap[id]);
-      state.visited.add(id);
 
-      const required = ['hero', 'about', 'skills', 'projects', 'contact'];
-      if (required.every(s => state.visited.has(s))) unlock('all_sections');
+      if (entry.isIntersecting) {
+        // Unlock section-specific achievement
+        if (sectionMap[id]) unlock(sectionMap[id]);
+        state.visited.add(id);
+
+        // Full tour
+        const required = ['hero', 'about', 'skills', 'projects', 'contact'];
+        if (required.every(s => state.visited.has(s))) unlock('all_sections');
+
+        // Focused 30s — start timer
+        sectionTimers[id] = setTimeout(() => unlock('focused_30s'), 30000);
+      } else {
+        // Left section — cancel timer
+        clearTimeout(sectionTimers[id]);
+      }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.4 });
 
   document.querySelectorAll('section[id]').forEach(s => visitObserver.observe(s));
 
-  // Idle 5s
+  // ── Idle 5s ───────────────────────────────────────────────
   let idleTimer;
   const resetIdle = () => {
     clearTimeout(idleTimer);
