@@ -138,6 +138,7 @@
 }
 
 .hero__desc {
+  font-family: var(--font-mono);
   font-size: var(--fs-sm);
   color: var(--clr-text-muted);
   max-width: 520px;
