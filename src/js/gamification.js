@@ -195,33 +195,39 @@ export function initGamification() {
   const hudTooltipTitle = hudTooltip?.querySelector('.hud__tooltip-title');
   const hudTooltipHint  = hudTooltip?.querySelector('.hud__tooltip-hint');
   let tooltipTimer;
+  const isTouch = window.matchMedia('(hover: none)').matches;
+
+  const showTooltip = (el) => {
+    if (!hudTooltip) return;
+    clearTimeout(tooltipTimer);
+    hudTooltipTitle.textContent = el.dataset.title || '';
+    hudTooltipHint.textContent  = el.dataset.hint  || '';
+    hudTooltip.classList.add('visible');
+    hudTooltip.setAttribute('aria-hidden', 'false');
+  };
+  const hideTooltip = () => {
+    tooltipTimer = setTimeout(() => {
+      hudTooltip?.classList.remove('visible');
+      hudTooltip?.setAttribute('aria-hidden', 'true');
+    }, 200);
+  };
 
   document.querySelectorAll('.hud__achievement').forEach(el => {
-    const show = () => {
-      if (!hudTooltip) return;
-      clearTimeout(tooltipTimer);
-      hudTooltipTitle.textContent = el.dataset.title || '';
-      hudTooltipHint.textContent  = el.dataset.hint  || '';
-      hudTooltip.classList.add('visible');
-      hudTooltip.setAttribute('aria-hidden', 'false');
-    };
-    const hide = () => {
-      tooltipTimer = setTimeout(() => {
-        hudTooltip?.classList.remove('visible');
-        hudTooltip?.setAttribute('aria-hidden', 'true');
-      }, 200);
-    };
-
-    el.addEventListener('mouseenter', show);
-    el.addEventListener('mouseleave', hide);
-    // Mobile: tap toggles tooltip
-    el.addEventListener('click', (e) => {
-      e.stopPropagation();
-      hudTooltip?.classList.contains('visible') &&
-      hudTooltipTitle?.textContent === el.dataset.title
-        ? hide()
-        : show();
-    });
+    if (isTouch) {
+      // Touch: tap always shows; tapping same one again hides
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (hudTooltip?.classList.contains('visible') &&
+            hudTooltipTitle?.textContent === el.dataset.title) {
+          hudTooltip.classList.remove('visible');
+        } else {
+          showTooltip(el);
+        }
+      });
+    } else {
+      el.addEventListener('mouseenter', () => showTooltip(el));
+      el.addEventListener('mouseleave', hideTooltip);
+    }
   });
 
   // ── First scroll ──────────────────────────────────────────
