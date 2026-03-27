@@ -1,31 +1,41 @@
 /* =============================================
-   DESIGN TOKENS — All visual values live here
+   DESIGN TOKENS — Pixel Art 2D Edition
    ============================================= */
 
 :root {
-  /* --- Colors --- */
-  --clr-bg:         #0d0d14;
-  --clr-surface:    #14141f;
-  --clr-surface-2:  #1c1c2e;
-  --clr-border:     rgba(255,255,255,0.06);
+  /* --- Colors (saturated, game-palette) --- */
+  --clr-bg:         #0a0a12;
+  --clr-surface:    #111120;
+  --clr-surface-2:  #1a1a2e;
+  --clr-border:     #2a2a4a;
 
   --clr-text:       #e8e6f0;
-  --clr-text-muted: #7b789a;
+  --clr-text-muted: #6a6888;
 
-  /* Accent — vivid violet-to-cyan gradient */
   --clr-accent-1:   #7c3aed;   /* violet */
-  --clr-accent-2:   #06b6d4;   /* cyan   */
-  --clr-accent-glow:rgba(124, 58, 237, 0.35);
+  --clr-accent-2:   #00d4ff;   /* cyan   */
+  --clr-accent-glow:rgba(124, 58, 237, 0.4);
 
   /* Gamification */
-  --clr-xp:         #f59e0b;   /* gold XP */
-  --clr-success:    #10b981;
-  --clr-danger:     #ef4444;
+  --clr-xp:        #ffb300;
+  --clr-success:   #00e676;
+  --clr-danger:    #ff1744;
+
+  /* Pixel shadows (hard offset, no blur) */
+  --px-shadow-accent: 4px 4px 0 0 var(--clr-accent-1);
+  --px-shadow-xp:     4px 4px 0 0 #a07000;
+  --px-shadow-dark:   4px 4px 0 0 rgba(0,0,0,0.8);
 
   /* --- Typography --- */
-  --font-mono:      'JetBrains Mono', 'Fira Code', monospace;
-  --font-sans:      'Inter', system-ui, sans-serif;
-  --font-display:   'Space Grotesk', var(--font-sans);
+  --font-pixel:   'Press Start 2P', monospace;
+  --font-mono:    'JetBrains Mono', monospace;
+  --font-sans:    'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', var(--font-sans);
+
+  --fs-pixel-xs:  0.5rem;   /* 8px  — labels, badges */
+  --fs-pixel-sm:  0.625rem; /* 10px — secondary pixel text */
+  --fs-pixel-md:  0.75rem;  /* 12px — primary pixel text */
+  --fs-pixel-lg:  1rem;     /* 16px — pixel headings */
 
   --fs-xs:   clamp(0.75rem,  1.5vw, 0.875rem);
   --fs-sm:   clamp(0.875rem, 2vw,   1rem);
@@ -33,7 +43,7 @@
   --fs-lg:   clamp(1.125rem, 3vw,   1.375rem);
   --fs-xl:   clamp(1.5rem,   4vw,   2rem);
   --fs-2xl:  clamp(2rem,     6vw,   3.5rem);
-  --fs-3xl:  clamp(3rem,     9vw,   6rem);
+  --fs-3xl:  clamp(2.5rem,   7vw,   5rem);
 
   /* --- Spacing --- */
   --space-1: 0.25rem;
@@ -51,29 +61,32 @@
   --max-width: 1100px;
   --nav-height: 4rem;
 
-  /* --- Effects --- */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-full: 9999px;
+  /* --- Pixel borders (NO radius) --- */
+  --radius-sm:   0px;
+  --radius-md:   0px;
+  --radius-lg:   0px;
+  --radius-full: 0px;
 
-  --shadow-glow: 0 0 40px var(--clr-accent-glow);
-  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+  --px-border: 2px solid var(--clr-border);
+  --px-border-accent: 2px solid var(--clr-accent-1);
+  --px-border-xp:     2px solid var(--clr-xp);
 
-  --transition-fast:   150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base:   300ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow:   600ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --shadow-card: var(--px-shadow-dark);
+
+  --transition-fast:   100ms steps(2);
+  --transition-base:   200ms steps(4);
+  --transition-slow:   400ms steps(8);
+  --transition-spring: 300ms steps(6);
 }
 
-/* Light mode override */
 [data-theme="light"] {
-  --clr-bg:         #f5f4fc;
+  --clr-bg:         #f0eeff;
   --clr-surface:    #ffffff;
-  --clr-surface-2:  #eeedf8;
-  --clr-border:     rgba(0,0,0,0.08);
+  --clr-surface-2:  #e4e0ff;
+  --clr-border:     #c0b8e8;
   --clr-text:       #1a1830;
   --clr-text-muted: #6b6886;
-  --clr-accent-glow:rgba(124, 58, 237, 0.2);
-  --shadow-card:    0 4px 24px rgba(0,0,0,0.08);
+  --clr-accent-glow:rgba(124, 58, 237, 0.15);
+  --px-shadow-dark: 4px 4px 0 0 rgba(0,0,0,0.25);
+  --shadow-card:    var(--px-shadow-dark);
 }

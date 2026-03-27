@@ -1,11 +1,14 @@
 /* =============================================
-   MODERN CSS RESET
+   MODERN CSS RESET — Pixel Art Edition
    ============================================= */
 
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  /* Pixel rendering everywhere */
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
 html {
@@ -20,7 +23,34 @@ body {
   background-color: var(--clr-bg);
   line-height: 1.6;
   overflow-x: hidden;
-  transition: background-color var(--transition-slow), color var(--transition-slow);
+  transition: background-color 200ms steps(4), color 200ms steps(4);
+}
+
+/* Scanlines overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 9000;
+  mix-blend-mode: multiply;
+}
+
+[data-theme="light"] body::before {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.04) 2px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
 }
 
 img, video, svg {
@@ -40,36 +70,31 @@ button {
   background: none;
 }
 
-ul, ol {
-  list-style: none;
-}
+ul, ol { list-style: none; }
 
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; }
+/* Pixel scrollbar */
+::-webkit-scrollbar       { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--clr-bg); }
 ::-webkit-scrollbar-thumb {
   background: var(--clr-accent-1);
-  border-radius: var(--radius-full);
+  border: 2px solid var(--clr-bg);
 }
 
-/* Selection */
+/* Pixel selection */
 ::selection {
   background: var(--clr-accent-1);
   color: #fff;
 }
 
-/* Focus visible */
+/* Focus */
 :focus-visible {
-  outline: 2px solid var(--clr-accent-1);
-  outline-offset: 3px;
-  border-radius: var(--radius-sm);
+  outline: 2px solid var(--clr-accent-2);
+  outline-offset: 2px;
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }

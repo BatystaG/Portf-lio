@@ -1,5 +1,5 @@
 /* =============================================
-   NAVIGATION
+   NAVIGATION — Pixel Art Edition
    ============================================= */
 
 .nav {
@@ -13,35 +13,31 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--space-8);
-  transition: background var(--transition-base), backdrop-filter var(--transition-base);
+  transition: background 200ms steps(4), border-color 200ms steps(4);
 }
 
 .nav.scrolled {
-  background: rgba(13, 13, 20, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--clr-border);
+  background: rgba(10, 10, 18, 0.95);
+  border-bottom: 2px solid var(--clr-border);
 }
 
 [data-theme="light"] .nav.scrolled {
-  background: rgba(245, 244, 252, 0.85);
+  background: rgba(240, 238, 255, 0.95);
 }
 
 /* Logo */
 .nav__logo {
-  font-family: var(--font-mono);
-  font-size: var(--fs-lg);
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--clr-accent-1), var(--clr-accent-2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -0.02em;
-  transition: filter var(--transition-base);
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel-md);
+  color: var(--clr-accent-2);
+  letter-spacing: 0.05em;
+  text-shadow: 2px 2px 0 var(--clr-accent-1);
+  transition: text-shadow 100ms steps(2), color 100ms steps(2);
 }
 
 .nav__logo:hover {
-  filter: brightness(1.2);
+  color: var(--clr-accent-1);
+  text-shadow: 2px 2px 0 var(--clr-accent-2);
 }
 
 /* Links */
@@ -52,29 +48,30 @@
 }
 
 .nav__link {
-  font-size: var(--fs-sm);
-  font-weight: 500;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel-xs);
   color: var(--clr-text-muted);
+  letter-spacing: 0.05em;
   position: relative;
-  padding-bottom: 2px;
-  transition: color var(--transition-fast);
+  padding-bottom: 4px;
+  transition: color 100ms steps(2);
 }
 
+/* Pixel underline */
 .nav__link::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   left: 0;
   width: 0;
-  height: 1.5px;
-  background: linear-gradient(90deg, var(--clr-accent-1), var(--clr-accent-2));
-  border-radius: var(--radius-full);
-  transition: width var(--transition-spring);
+  height: 2px;
+  background: var(--clr-accent-2);
+  transition: width 100ms steps(4);
 }
 
 .nav__link:hover,
 .nav__link.active {
-  color: var(--clr-text);
+  color: var(--clr-accent-2);
 }
 
 .nav__link:hover::after,
@@ -84,45 +81,44 @@
 
 /* Theme toggle */
 .nav__theme-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-full);
-  border: 1.5px solid var(--clr-border);
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--clr-border);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--clr-text-muted);
-  transition: border-color var(--transition-fast),
-              color var(--transition-fast),
-              background var(--transition-fast);
+  transition: border-color 100ms steps(2),
+              color 100ms steps(2),
+              box-shadow 100ms steps(2);
 }
 
 .nav__theme-btn:hover {
   border-color: var(--clr-accent-1);
   color: var(--clr-accent-1);
-  background: var(--clr-accent-glow);
+  box-shadow: 2px 2px 0 0 var(--clr-accent-1);
 }
 
-/* XP badge in nav */
+/* XP badge */
 .nav__xp {
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel-xs);
   color: var(--clr-xp);
-  background: rgba(245, 158, 11, 0.1);
-  border: 1px solid rgba(245, 158, 11, 0.2);
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-full);
-  transition: background var(--transition-fast);
+  background: var(--clr-surface);
+  border: 2px solid var(--clr-xp);
+  padding: 4px 8px;
+  box-shadow: 2px 2px 0 0 #a07000;
+  transition: box-shadow 100ms steps(2), transform 100ms steps(2);
 }
 
 .nav__xp:hover {
-  background: rgba(245, 158, 11, 0.18);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 0 #a07000;
 }
 
-/* Mobile */
 @media (max-width: 640px) {
   .nav__links { display: none; }
   .nav { padding: 0 var(--space-6); }
