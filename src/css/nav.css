@@ -123,3 +123,9 @@
   .nav__links { display: none; }
   .nav { padding: 0 var(--space-6); }
 }
+
+/* ---- Responsivo ---- */
+@media (max-width: 768px) {
+  .nav__logo { font-size: var(--fs-pixel-xs); }
+  .nav__xp   { display: none; }
+}

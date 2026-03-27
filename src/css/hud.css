@@ -228,28 +228,50 @@
   box-shadow: 3px 3px 0 0 #a07000;
 }
 
-/* Pixel tooltip */
-.hud__achievement::after {
-  content: attr(data-label);
+/* Pixel tooltip — title + hint */
+.hud__achievement::before {
+  content: attr(data-title);
   position: absolute;
-  bottom: calc(100% + 4px);
+  bottom: calc(100% + 28px);
   left: 50%;
   transform: translateX(-50%);
   background: var(--clr-surface-2);
   border: 2px solid var(--clr-xp);
   box-shadow: 2px 2px 0 0 #a07000;
-  padding: 3px 6px;
+  padding: 3px 8px;
   font-family: var(--font-pixel);
   font-size: var(--fs-pixel-xs);
-  line-height: 1.6;
+  line-height: 1.8;
   white-space: nowrap;
-  color: var(--clr-text);
+  color: var(--clr-xp);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 100ms steps(2);
+  z-index: 11;
+}
+
+.hud__achievement::after {
+  content: attr(data-hint);
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--clr-surface);
+  border: 2px solid var(--clr-border);
+  box-shadow: 2px 2px 0 0 rgba(0,0,0,0.6);
+  padding: 3px 8px;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel-xs);
+  line-height: 1.8;
+  white-space: nowrap;
+  color: var(--clr-text-muted);
   pointer-events: none;
   opacity: 0;
   transition: opacity 100ms steps(2);
   z-index: 10;
 }
 
+.hud__achievement:hover::before,
 .hud__achievement:hover::after { opacity: 1; }
 
 /* Count footer */
@@ -279,4 +301,19 @@
     align-items: center;
   }
   .hud__panel { width: calc(100vw - 3rem); }
+}
+
+/* ---- Responsivo HUD ---- */
+@media (max-width: 480px) {
+  .hud { bottom: var(--space-3); left: 50%; transform: translateX(-50%); align-items: center; }
+  .hud__panel { width: calc(100vw - 2rem); }
+  /* Tooltips vão pra baixo em mobile para não sair da tela */
+  .hud__achievement::before {
+    bottom: auto;
+    top: calc(100% + 28px);
+  }
+  .hud__achievement::after {
+    bottom: auto;
+    top: calc(100% + 4px);
+  }
 }

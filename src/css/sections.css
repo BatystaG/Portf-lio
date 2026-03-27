@@ -471,3 +471,35 @@
 }
 
 .footer span { color: var(--clr-danger); }
+
+/* ---- Responsivo geral ---- */
+@media (max-width: 768px) {
+  .section { padding: var(--space-16) var(--space-6); }
+
+  .section__title { font-size: var(--fs-pixel-md); line-height: 1.8; }
+
+  .skills-grid    { grid-template-columns: 1fr 1fr; }
+  .projects-grid  { grid-template-columns: 1fr; }
+
+  .xp-panel { padding: var(--space-4); }
+
+  .about__avatar-frame { width: 220px; height: 220px; }
+}
+
+@media (max-width: 480px) {
+  .section { padding: var(--space-12) var(--space-4); }
+
+  .skills-grid   { grid-template-columns: 1fr; }
+
+  .skill-card__name  { font-size: var(--fs-pixel-xs); }
+  .project-card__title { font-size: var(--fs-pixel-xs); }
+
+  .social-link__name   { font-size: var(--fs-pixel-xs); }
+
+  .form-label { font-size: var(--fs-pixel-xs); }
+
+  .footer { font-size: var(--fs-pixel-xs); padding: var(--space-8) var(--space-4); }
+
+  .about__avatar-frame { width: 180px; height: 180px; }
+  .about__badge { font-size: 8px; padding: 4px 8px; }
+}

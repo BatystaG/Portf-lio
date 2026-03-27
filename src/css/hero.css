@@ -216,3 +216,24 @@
 }
 
 @keyframes fadeIn { to { opacity: 1; } }
+
+/* ---- Responsivo ---- */
+@media (max-width: 768px) {
+  .hero__name {
+    font-size: clamp(0.9rem, 5vw, 1.5rem);
+  }
+  .hero__stats {
+    gap: var(--space-8);
+  }
+  .hero__stat-value {
+    font-size: var(--fs-pixel-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero { padding-left: var(--space-4); padding-right: var(--space-4); }
+  .hero__name { font-size: clamp(0.75rem, 4.5vw, 1.1rem); }
+  .hero__desc { font-size: var(--fs-xs); }
+  .hero__stats { gap: var(--space-6); flex-wrap: wrap; }
+  .hero__cta { flex-direction: column; align-items: center; }
+}
