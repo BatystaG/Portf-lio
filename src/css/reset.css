@@ -14,6 +14,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden; /* prevent horizontal scroll at root */
 }
 
 body {
@@ -23,6 +24,7 @@ body {
   background-color: var(--clr-bg);
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100vw;
   transition: background-color 200ms steps(4), color 200ms steps(4);
 }
 

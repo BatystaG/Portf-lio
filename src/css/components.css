@@ -50,7 +50,9 @@
 .section {
   padding: var(--space-32) var(--space-8);
   max-width: var(--max-width);
+  width: 100%;
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 .section__header { margin-bottom: var(--space-16); }

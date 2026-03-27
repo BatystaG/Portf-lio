@@ -96,8 +96,23 @@
 }
 
 @media (max-width: 768px) {
-  .about { grid-template-columns: 1fr; }
-  .about__avatar { order: -1; }
+  .about {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+  .about__avatar {
+    order: -1;
+    justify-content: center;
+  }
+  .about__avatar-frame {
+    width: min(260px, 80vw);
+    height: min(260px, 80vw);
+  }
+  /* badge não pode vazar para fora da tela */
+  .about__badge {
+    right: 0;
+    bottom: -20px;
+  }
 }
 
 /* ---- Skills ---- */
