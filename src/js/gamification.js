@@ -190,6 +190,40 @@ export function initGamification() {
     }
   });
 
+  // ── Achievement tooltips (panel-based, works on desktop + mobile) ──
+  const hudTooltip      = document.getElementById('hud-tooltip');
+  const hudTooltipTitle = hudTooltip?.querySelector('.hud__tooltip-title');
+  const hudTooltipHint  = hudTooltip?.querySelector('.hud__tooltip-hint');
+  let tooltipTimer;
+
+  document.querySelectorAll('.hud__achievement').forEach(el => {
+    const show = () => {
+      if (!hudTooltip) return;
+      clearTimeout(tooltipTimer);
+      hudTooltipTitle.textContent = el.dataset.title || '';
+      hudTooltipHint.textContent  = el.dataset.hint  || '';
+      hudTooltip.classList.add('visible');
+      hudTooltip.setAttribute('aria-hidden', 'false');
+    };
+    const hide = () => {
+      tooltipTimer = setTimeout(() => {
+        hudTooltip?.classList.remove('visible');
+        hudTooltip?.setAttribute('aria-hidden', 'true');
+      }, 200);
+    };
+
+    el.addEventListener('mouseenter', show);
+    el.addEventListener('mouseleave', hide);
+    // Mobile: tap toggles tooltip
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      hudTooltip?.classList.contains('visible') &&
+      hudTooltipTitle?.textContent === el.dataset.title
+        ? hide()
+        : show();
+    });
+  });
+
   // ── First scroll ──────────────────────────────────────────
   window.addEventListener('scroll', () => unlock('first_scroll'), { passive: true, once: true });
 

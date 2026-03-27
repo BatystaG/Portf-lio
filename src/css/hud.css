@@ -228,70 +228,36 @@
   box-shadow: 3px 3px 0 0 #a07000;
 }
 
-/* Pixel tooltip — anchored to the LEFT of each cell, never centered.
-   max-width + word-break prevents right-side overflow. */
-.hud__achievement::before {
-  content: attr(data-title);
-  position: absolute;
-  bottom: calc(100% + 26px);
-  left: 0;
-  width: max-content;
-  max-width: 160px;
+/* Inline tooltip panel — lives outside the scrollable grid so it's never clipped */
+.hud__tooltip {
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-3);
   background: var(--clr-surface-2);
   border: 2px solid var(--clr-xp);
   box-shadow: 2px 2px 0 0 #a07000;
-  padding: 3px 7px;
+  min-height: 52px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 100ms steps(2);
+}
+
+.hud__tooltip.visible {
+  opacity: 1;
+}
+
+.hud__tooltip-title {
   font-family: var(--font-pixel);
   font-size: var(--fs-pixel-xs);
-  line-height: 1.8;
-  white-space: normal;
-  word-break: break-word;
   color: var(--clr-xp);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 100ms steps(2);
-  z-index: 20;
+  line-height: 1.8;
+  margin-bottom: var(--space-1);
 }
 
-.hud__achievement::after {
-  content: attr(data-hint);
-  position: absolute;
-  bottom: calc(100% + 2px);
-  left: 0;
-  width: max-content;
-  max-width: 160px;
-  background: var(--clr-surface);
-  border: 2px solid var(--clr-border);
-  box-shadow: 2px 2px 0 0 rgba(0,0,0,0.6);
-  padding: 3px 7px;
+.hud__tooltip-hint {
   font-family: var(--font-pixel);
   font-size: var(--fs-pixel-xs);
-  line-height: 1.8;
-  white-space: normal;
-  word-break: break-word;
   color: var(--clr-text-muted);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 100ms steps(2);
-  z-index: 19;
-}
-
-/* Right-column cells (4th, 5th): pin tooltip to RIGHT so it doesn't overflow */
-.hud__achievement:nth-child(5n+4)::before,
-.hud__achievement:nth-child(5n+5)::before,
-.hud__achievement:nth-child(5n+4)::after,
-.hud__achievement:nth-child(5n+5)::after {
-  left: auto;
-  right: 0;
-}
-
-.hud__achievement:hover::before,
-.hud__achievement:hover::after { opacity: 1; }
-
-/* Hide tooltips on touch — no hover on mobile anyway */
-@media (hover: none) {
-  .hud__achievement::before,
-  .hud__achievement::after { display: none; }
+  line-height: 1.8;
 }
 
 /* Count footer */
