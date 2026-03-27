@@ -32,10 +32,10 @@
   --font-sans:    'Inter', system-ui, sans-serif;
   --font-display: 'Space Grotesk', var(--font-sans);
 
-  --fs-pixel-xs:  clamp(0.45rem, 1.2vw, 0.5rem);   /* 7–8px  — labels, badges */
-  --fs-pixel-sm:  clamp(0.55rem, 1.5vw, 0.625rem); /* 9–10px — secondary */
-  --fs-pixel-md:  clamp(0.65rem, 1.8vw, 0.75rem);  /* 10–12px — primary */
-  --fs-pixel-lg:  clamp(0.75rem, 2.5vw, 1rem);     /* 12–16px — headings */
+  --fs-pixel-xs:  clamp(0.6rem,  1.5vw, 0.7rem);   /* 10–11px — labels, badges */
+  --fs-pixel-sm:  clamp(0.7rem,  1.8vw, 0.8rem);   /* 11–13px — secondary */
+  --fs-pixel-md:  clamp(0.8rem,  2vw,   0.9rem);   /* 13–14px — primary */
+  --fs-pixel-lg:  clamp(1rem,    2.5vw, 1.25rem);  /* 16–20px — headings */
 
   --fs-xs:   clamp(0.75rem,  1.5vw, 0.875rem);
   --fs-sm:   clamp(0.875rem, 2vw,   1rem);

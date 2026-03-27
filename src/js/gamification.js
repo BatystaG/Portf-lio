@@ -14,23 +14,21 @@ const LEVELS = [
 ];
 
 const ACHIEVEMENTS = [
-  // --- Originais ---
-  { id: 'first_scroll',    emoji: '📜', title: 'Primeiro Scroll',     desc: 'Começou a explorar',                xp: 10 },
-  { id: 'projects_seen',   emoji: '🔭', title: 'Explorador',          desc: 'Conferiu os projetos',              xp: 30 },
-  { id: 'contact_open',    emoji: '📬', title: 'Entrando em Contato', desc: 'Abriu a seção de contato',          xp: 20 },
-  { id: 'theme_toggle',    emoji: '🌙', title: 'Coruja Noturna',      desc: 'Trocou o tema',                     xp: 15 },
-  { id: 'all_sections',    emoji: '🗺️', title: 'Tour Completo',       desc: 'Visitou todas as seções',           xp: 50 },
-  { id: 'idle_5s',         emoji: '☕', title: 'Só Olhando',          desc: 'Aproveitando o tempo...',           xp: 5  },
-  { id: 'github_click',    emoji: '🐙', title: 'Curioso do Código',   desc: 'Conferiu o GitHub',                 xp: 25 },
-  // --- Novos ---
-  { id: 'focused_30s',     emoji: '🎯', title: 'Focado',              desc: 'Ficou 30s em uma seção',            xp: 20 },
-  { id: 'stack_analyzed',  emoji: '🏷️', title: 'Stack Analisado',    desc: 'Explorou todas as tags de skill',   xp: 25 },
-  { id: 'early_bird',      emoji: '🌅', title: 'Madrugador',          desc: 'Acessou entre 00h e 06h',           xp: 30 },
-  { id: 'form_started',    emoji: '📋', title: 'Formulário Iniciado', desc: 'Começou a preencher o contato',     xp: 15 },
-  { id: 'back_to_top',     emoji: '🔝', title: 'De Volta ao Topo',    desc: 'Clicou no logo para voltar',        xp: 10 },
-  { id: 'linkedin_click',  emoji: '🔗', title: 'LinkedIn Visitado',   desc: 'Conferiu o LinkedIn',               xp: 20 },
-  { id: 'theme_maniac',    emoji: '🌀', title: 'Indeciso',             desc: 'Trocou o tema 3 vezes',             xp: 15 },
-  { id: 'avatar_hover',    emoji: '👀', title: 'Curioso',             desc: 'Passou o mouse na foto',            xp: 10 },
+  { id: 'first_scroll',   emoji: '📜', title: 'Tá Vivo!',              desc: 'Prova que o scroll funciona',          xp: 10 },
+  { id: 'projects_seen',  emoji: '🔭', title: 'Stalker Profissional',  desc: 'Fuçando nos projetos alheios',         xp: 30 },
+  { id: 'contact_open',   emoji: '📬', title: 'Tem Vaga?',             desc: 'A pergunta que todo dev quer ouvir',   xp: 20 },
+  { id: 'theme_toggle',   emoji: '☀️', title: 'MEUS OLHOS!!',          desc: 'Tema claro? Isso é crime',             xp: 15 },
+  { id: 'all_sections',   emoji: '🗺️', title: 'Sem Dar Skip',          desc: 'Leu tudo? Mentira, sei que não leu',  xp: 50 },
+  { id: 'idle_5s',        emoji: '☕', title: 'Cadê o Café?',          desc: '5s parado... foi buscar café né',      xp: 5  },
+  { id: 'github_click',   emoji: '🐙', title: 'Ctrl+C Ctrl+V',         desc: 'Todo dev sabe o que vai fazer aqui',   xp: 25 },
+  { id: 'focused_30s',    emoji: '🎯', title: 'Sem Notificação?',      desc: '30s focado? Isso é impossível',        xp: 20 },
+  { id: 'stack_analyzed', emoji: '🏷️', title: 'Tech Radar',            desc: 'Passou em cada tag com uma lupa',      xp: 25 },
+  { id: 'early_bird',     emoji: '🌅', title: 'Deploy às 3am',         desc: 'Vai dar errado, mas faz parte',        xp: 30 },
+  { id: 'form_started',   emoji: '📋', title: 'Vai me Contratar?',     desc: 'Digitando... apagando... digitando...', xp: 15 },
+  { id: 'back_to_top',    emoji: '🔝', title: 'Cardio de Dev',         desc: 'Scrollou tudo só pra voltar',          xp: 10 },
+  { id: 'linkedin_click', emoji: '🔗', title: 'Networking',            desc: 'Aceita conexão? 😬',                   xp: 20 },
+  { id: 'theme_maniac',   emoji: '🌀', title: 'Loop Infinito',         desc: 'Claro... escuro... claro... socorro',  xp: 15 },
+  { id: 'avatar_hover',   emoji: '👀', title: 'Olha Fixo Não!',        desc: 'Ficou encarando a foto. Estranho.',    xp: 10 },
 ];
 
 const state = {
