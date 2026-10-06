@@ -1,5 +1,5 @@
 /**
- * Custom cursor — dot + ring with hover-state morphing
+ * Custom cursor  -  dot + ring with hover-state morphing
  */
 export function initCursor() {
   // Skip on touch devices

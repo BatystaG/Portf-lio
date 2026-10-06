@@ -14,21 +14,22 @@ const LEVELS = [
 ];
 
 const ACHIEVEMENTS = [
-  { id: 'first_scroll',   emoji: '📜', title: 'Tá Vivo!',              desc: 'Prova que o scroll funciona',          xp: 10 },
-  { id: 'projects_seen',  emoji: '🔭', title: 'Stalker Profissional',  desc: 'Fuçando nos projetos alheios',         xp: 30 },
-  { id: 'contact_open',   emoji: '📬', title: 'Tem Vaga?',             desc: 'A pergunta que todo dev quer ouvir',   xp: 20 },
-  { id: 'theme_toggle',   emoji: '☀️', title: 'MEUS OLHOS!!',          desc: 'Tema claro? Isso é crime',             xp: 15 },
-  { id: 'all_sections',   emoji: '🗺️', title: 'Sem Dar Skip',          desc: 'Leu tudo? Mentira, sei que não leu',  xp: 50 },
-  { id: 'idle_5s',        emoji: '☕', title: 'Cadê o Café?',          desc: '5s parado... foi buscar café né',      xp: 5  },
-  { id: 'github_click',   emoji: '🐙', title: 'Ctrl+C Ctrl+V',         desc: 'Todo dev sabe o que vai fazer aqui',   xp: 25 },
-  { id: 'focused_30s',    emoji: '🎯', title: 'Sem Notificação?',      desc: '30s focado? Isso é impossível',        xp: 20 },
-  { id: 'stack_analyzed', emoji: '🏷️', title: 'Tech Radar',            desc: 'Passou em cada tag com uma lupa',      xp: 25 },
-  { id: 'early_bird',     emoji: '🌅', title: 'Deploy às 3am',         desc: 'Vai dar errado, mas faz parte',        xp: 30 },
-  { id: 'form_started',   emoji: '📋', title: 'Vai me Contratar?',     desc: 'Digitando... apagando... digitando...', xp: 15 },
-  { id: 'back_to_top',    emoji: '🔝', title: 'Cardio de Dev',         desc: 'Scrollou tudo só pra voltar',          xp: 10 },
-  { id: 'linkedin_click', emoji: '🔗', title: 'Networking',            desc: 'Aceita conexão? 😬',                   xp: 20 },
-  { id: 'theme_maniac',   emoji: '🌀', title: 'Loop Infinito',         desc: 'Claro... escuro... claro... socorro',  xp: 15 },
-  { id: 'avatar_hover',   emoji: '👀', title: 'Olha Fixo Não!',        desc: 'Ficou encarando a foto. Estranho.',    xp: 10 },
+  { id: 'first_scroll',   icon: 'search',         title: 'E lá vamos nós...',           desc: 'Desceu a página sem abrir chamado',                 xp: 10 },
+  { id: 'projects_seen',  icon: 'bug',            title: 'Detetive de bug',             desc: 'Inspecionou a seção inteira. Suspeito',            xp: 30 },
+  { id: 'contact_open',   icon: 'mail',           title: 'Tem vaga ou é só formulário?', desc: 'Chegou no contato. Agora falta a vaga',             xp: 20 },
+  { id: 'theme_toggle',   icon: 'moon',           title: 'Meus Olhos Queimam',          desc: 'Alternou o tema. Seus olhos que aguentem',        xp: 15 },
+  { id: 'all_sections',   icon: 'list-checks',    title: 'Leu até o fim. Preocupante.', desc: 'Nenhuma seção escapou da inspeção',                xp: 50 },
+  { id: 'idle_5s',        icon: 'timer',          title: 'Timeout de atenção',         desc: 'Cinco segundos parado. Incidente ou café?',        xp: 5  },
+  { id: 'coffee_break',   icon: 'coffee-steam',   title: 'Pausa para o cafezinho',     desc: 'Xícara quente em mãos. O bug pode esperar.',       xp: 0  },
+  { id: 'github_click',   icon: 'search-code',    title: 'Fiscal do GitHub',            desc: 'Abriu meu perfil para investigar',                xp: 25 },
+  { id: 'focused_30s',    icon: 'target',         title: 'Cadê o bug?',                 desc: 'Trinta segundos sem abrir outra aba',              xp: 20 },
+  { id: 'stack_analyzed', icon: 'wrench',         title: 'Stack sob interrogatório',   desc: 'Nenhuma tecnologia saiu ilesa',                    xp: 25 },
+  { id: 'early_bird',     icon: 'clock',          title: 'QA de madrugada',            desc: 'Rodou o teste antes do café. Audacioso',           xp: 30 },
+  { id: 'form_started',   icon: 'pen-line',       title: 'Escreveu, apagou, repetiu',  desc: 'Requisito indefinido? Compreensível',             xp: 15 },
+  { id: 'back_to_top',    icon: 'arrow-up',       title: 'Reproduziu o caminho todo',  desc: 'Voltou ao topo. Teste de regressão?',             xp: 10 },
+  { id: 'linkedin_click', icon: 'user-round-plus', title: 'Networking sem evidência',   desc: 'Abriu o LinkedIn. Agora mande o convite',          xp: 20 },
+  { id: 'theme_maniac',   icon: 'repeat-2',       title: 'Regressão cromática',        desc: 'O tema mudou três vezes. Mudou o requisito?',      xp: 15 },
+  { id: 'avatar_hover',   icon: 'scan-face',      title: 'Auditoria de pixel',         desc: 'Inspecionou a foto em busca de defeito',           xp: 10 },
 ];
 
 const state = {
@@ -66,8 +67,8 @@ function addXP(amount) {
 
   if (after.level > before.level) {
     showToast({
-      emoji: '⬆️',
-      title: `Nível ${after.level} — ${after.name}!`,
+      icon: 'arrow-up',
+      title: `Nível ${after.level}  -  ${after.name}!`,
       desc:  `Você subiu de nível! Continue explorando.`,
       type:  'level-up',
     });
@@ -83,12 +84,12 @@ function unlock(achievementId) {
 
   state.unlocked.push(achievementId);
   save();
-  addXP(achievement.xp);
+  if (achievement.xp > 0) addXP(achievement.xp);
 
   showToast({
-    emoji: achievement.emoji,
+    icon: achievement.icon,
     title: `Conquista: ${achievement.title}`,
-    desc:  `+${achievement.xp} XP — ${achievement.desc}`,
+    desc:  achievement.xp > 0 ? `+${achievement.xp} XP  -  ${achievement.desc}` : achievement.desc,
     type:  'achievement',
   });
 
@@ -113,20 +114,20 @@ function updateXPBar() {
     : 100;
   const pctClamped = Math.min(pct, 100);
 
-  // ── Skills section XP panel ──
+  // -- Skills section XP panel --
   const xpEl     = document.querySelector('.nav__xp-value');
   const barFill  = document.querySelector('.xp-bar__fill');
   const levelEl  = document.querySelector('.xp-panel__level');
   const pointsEl = document.querySelector('.xp-panel__points');
 
   if (xpEl)     xpEl.textContent     = `${state.xp} XP`;
-  if (levelEl)  levelEl.textContent  = `LVL ${current.level} — ${current.name}`;
+  if (levelEl)  levelEl.textContent  = `LVL ${current.level}  -  ${current.name}`;
   if (barFill)  barFill.style.width  = `${pctClamped}%`;
   if (pointsEl) pointsEl.textContent = next
     ? `${state.xp} / ${next.xpRequired} XP → LVL ${next.level}`
-    : `NÍVEL MÁXIMO — ${state.xp} XP`;
+    : `NÍVEL MÁXIMO  -  ${state.xp} XP`;
 
-  // ── Floating HUD ──
+  // -- Floating HUD --
   const hudLevel   = document.querySelector('.hud__panel-level');
   const hudPts     = document.querySelector('.hud__panel-pts');
   const hudBarFill = document.querySelector('.hud__bar-fill');
@@ -135,10 +136,10 @@ function updateXPBar() {
   const hudXpText  = document.querySelector('.hud__xp-text');
   const hudCount   = document.querySelector('.hud-unlocked-count');
 
-  if (hudLevel)   hudLevel.textContent  = `LVL ${current.level} — ${current.name}`;
+  if (hudLevel)   hudLevel.textContent  = `LVL ${current.level}  -  ${current.name}`;
   if (hudPts)     hudPts.textContent    = next
     ? `${state.xp} / ${next.xpRequired} XP`
-    : `${state.xp} XP — MAX`;
+    : `${state.xp} XP  -  MAX`;
   if (hudBarFill) hudBarFill.style.width  = `${pctClamped}%`;
   if (hudBadge)   hudBadge.textContent    = `LVL ${current.level}`;
   if (hudMiniBar) hudMiniBar.style.width  = `${pctClamped}%`;
@@ -146,22 +147,36 @@ function updateXPBar() {
   if (hudCount)   hudCount.textContent    = state.unlocked.length;
 }
 
-function showToast({ emoji, title, desc, type = 'achievement' }) {
-  const container = document.querySelector('.toast-container');
-  if (!container) return;
+const toastQueue = [];
+let toastActive = false;
 
+function showToast(notification) {
+  toastQueue.push(notification);
+  showNextToast();
+}
+
+function showNextToast() {
+  const container = document.querySelector('.toast-container');
+  if (!container || toastActive || toastQueue.length === 0) return;
+
+  const { icon, title, desc, type = 'achievement' } = toastQueue.shift();
   const toast = document.createElement('div');
   toast.className = `toast toast--${type}`;
   toast.innerHTML = `
-    <span class="toast__icon">${emoji}</span>
+    <span class="toast__icon"><svg aria-hidden="true"><use href="assets/icons.svg#${icon}"></use></svg></span>
     <div>
       <div class="toast__title">${title}</div>
       <div class="toast__desc">${desc}</div>
     </div>
   `;
 
+  toastActive = true;
   container.appendChild(toast);
-  setTimeout(() => toast.remove(), 3600);
+  setTimeout(() => {
+    toast.remove();
+    toastActive = false;
+    showNextToast();
+  }, 3600);
 }
 
 export function initGamification() {
@@ -173,7 +188,7 @@ export function initGamification() {
     document.querySelector(`[data-hud-achievement="${id}"]`)?.classList.add('unlocked');
   });
 
-  // ── HUD toggle ────────────────────────────────────────────
+  // -- HUD toggle --------------------------------------------
   const hud    = document.getElementById('hud');
   const toggle = hud?.querySelector('.hud__toggle');
 
@@ -190,7 +205,7 @@ export function initGamification() {
     }
   });
 
-  // ── Achievement tooltips (panel-based, works on desktop + mobile) ──
+  // -- Achievement tooltips (panel-based, works on desktop + mobile) --
   const hudTooltip      = document.getElementById('hud-tooltip');
   const hudTooltipTitle = hudTooltip?.querySelector('.hud__tooltip-title');
   const hudTooltipHint  = hudTooltip?.querySelector('.hud__tooltip-hint');
@@ -230,10 +245,10 @@ export function initGamification() {
     }
   });
 
-  // ── First scroll ──────────────────────────────────────────
+  // -- First scroll ------------------------------------------
   window.addEventListener('scroll', () => unlock('first_scroll'), { passive: true, once: true });
 
-  // ── Theme toggle ──────────────────────────────────────────
+  // -- Theme toggle ------------------------------------------
   document.querySelector('.nav__theme-btn')?.addEventListener('click', () => {
     unlock('theme_toggle');
     state.themeToggleCount++;
@@ -241,34 +256,39 @@ export function initGamification() {
     if (state.themeToggleCount >= 3) unlock('theme_maniac');
   });
 
-  // ── Logo → back to top ────────────────────────────────────
+  // -- Logo → back to top ------------------------------------
   document.querySelector('.nav__logo')?.addEventListener('click', () => unlock('back_to_top'));
 
-  // ── GitHub click ──────────────────────────────────────────
+  // -- GitHub click ------------------------------------------
   document.querySelectorAll('a[href*="github.com"]').forEach(el =>
     el.addEventListener('click', () => unlock('github_click'), { once: true })
   );
 
-  // ── LinkedIn click ────────────────────────────────────────
+  // -- LinkedIn click ----------------------------------------
   document.querySelectorAll('a[href*="linkedin.com"]').forEach(el =>
     el.addEventListener('click', () => unlock('linkedin_click'), { once: true })
   );
 
-  // ── Avatar hover ──────────────────────────────────────────
+  // -- Avatar hover ------------------------------------------
   document.querySelector('.about__avatar-inner')?.addEventListener('mouseenter', () => {
     unlock('avatar_hover');
   }, { once: true });
 
-  // ── Form started ──────────────────────────────────────────
+  // -- Form started ------------------------------------------
   document.querySelectorAll('#contact-form input, #contact-form textarea').forEach(el =>
     el.addEventListener('input', () => unlock('form_started'), { once: true })
   );
 
-  // ── Early bird (00h–06h) ──────────────────────────────────
+  // -- Early bird (00h-06h) ----------------------------------
   const hour = new Date().getHours();
   if (hour >= 0 && hour < 6) unlock('early_bird');
 
-  // ── Stack analyzed — hover all skill tags ─────────────────
+  // -- Coffee break -----------------------------------------
+  document.querySelectorAll('[data-coffee-cup]').forEach(button =>
+    button.addEventListener('click', () => unlock('coffee_break'))
+  );
+
+  // -- Stack analyzed  -  hover all skill tags -----------------
   const allTags = document.querySelectorAll('.skills-grid .tag');
   const totalTags = allTags.length;
 
@@ -280,7 +300,7 @@ export function initGamification() {
     });
   });
 
-  // ── Section visits + Full tour + Focused 30s ─────────────
+  // -- Section visits + Full tour + Focused 30s -------------
   const sectionMap = {
     projects: 'projects_seen',
     contact:  'contact_open',
@@ -298,13 +318,13 @@ export function initGamification() {
         state.visited.add(id);
 
         // Full tour
-        const required = ['hero', 'about', 'skills', 'projects', 'contact'];
+        const required = ['hero', 'about', 'education', 'skills', 'projects', 'contact'];
         if (required.every(s => state.visited.has(s))) unlock('all_sections');
 
-        // Focused 30s — start timer
+        // Focused 30s  -  start timer
         sectionTimers[id] = setTimeout(() => unlock('focused_30s'), 30000);
       } else {
-        // Left section — cancel timer
+        // Left section  -  cancel timer
         clearTimeout(sectionTimers[id]);
       }
     });
@@ -312,7 +332,7 @@ export function initGamification() {
 
   document.querySelectorAll('section[id]').forEach(s => visitObserver.observe(s));
 
-  // ── Idle 5s ───────────────────────────────────────────────
+  // -- Idle 5s -----------------------------------------------
   let idleTimer;
   const resetIdle = () => {
     clearTimeout(idleTimer);

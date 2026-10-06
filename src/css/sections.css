@@ -1,5 +1,5 @@
 /* =============================================
-   SECTIONS — Pixel Art Edition
+   SECTIONS  -  Pixel Art Edition
    ============================================= */
 
 /* ---- About ---- */
@@ -62,6 +62,7 @@
 /* Pixel status badge */
 .about__badge {
   position: absolute;
+  z-index: 2;
   bottom: -16px;
   right: -16px;
   background: var(--clr-surface);
@@ -82,6 +83,7 @@
   0%, 100% { box-shadow: 3px 3px 0 0 #007a42; }
   50%       { box-shadow: 2px 2px 0 0 #007a42; }
 }
+
 
 .about__badge .dot {
   width: 8px;

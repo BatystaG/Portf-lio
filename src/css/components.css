@@ -1,5 +1,5 @@
 /* =============================================
-   SHARED COMPONENTS — Pixel Art Edition
+   SHARED COMPONENTS  -  Pixel Art Edition
    ============================================= */
 
 /* --- Buttons --- */
@@ -44,6 +44,43 @@
   border-color: var(--clr-accent-1);
   color: var(--clr-accent-1);
   box-shadow: 4px 4px 0 0 var(--clr-accent-1);
+}
+
+.coffee-cup {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-xp);
+  background: var(--clr-surface);
+  border: 2px solid var(--clr-xp);
+  box-shadow: 3px 3px 0 0 #a07000;
+  transition: transform 100ms steps(1), color 100ms steps(1), border-color 100ms steps(1), box-shadow 100ms steps(1);
+}
+
+.coffee-cup svg {
+  width: 22px;
+  height: 22px;
+}
+
+.coffee-cup:hover {
+  transform: translate(-2px, -2px);
+  color: var(--clr-accent-2);
+  border-color: var(--clr-accent-2);
+  box-shadow: 4px 4px 0 0 #007a99;
+}
+
+.coffee-cup:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.coffee-cup--avatar {
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  z-index: 3;
 }
 
 /* --- Section layout --- */
@@ -215,7 +252,12 @@
   box-shadow: 4px 4px 0 0 #007a99;
 }
 
-.toast__icon  { font-size: var(--fs-lg); }
+.toast__icon svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  color: var(--clr-xp);
+}
 .toast__title {
   font-family: var(--font-pixel);
   font-size: var(--fs-pixel-xs);

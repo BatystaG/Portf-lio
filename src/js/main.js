@@ -1,5 +1,5 @@
 /**
- * Portfolio — main entry point
+ * Portfolio  -  main entry point
  */
 import { initCursor }        from './cursor.js';
 import { initTheme }         from './theme.js';
@@ -15,10 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
   animateHero();
 
   initTypewriter('.typed-text', [
-    'Desenvolvedor Full Stack',
-    'Entusiasta de UI/UX',
-    'Solucionador de Problemas',
-    'Fã de Open Source',
+    'QA Engineer',
+    'Quality Assurance',
+    'Quality Engineering',
   ]);
 
   initGamification();

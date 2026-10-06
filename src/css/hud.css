@@ -1,5 +1,5 @@
 /* =============================================
-   FLOATING GAME HUD — Pixel Art Edition
+   FLOATING GAME HUD  -  Pixel Art Edition
    ============================================= */
 
 .hud {
@@ -14,7 +14,7 @@
   pointer-events: none;
 }
 
-/* ── Toggle button ── */
+/* -- Toggle button -- */
 .hud__toggle {
   display: flex;
   align-items: center;
@@ -93,7 +93,7 @@
   transform: rotate(180deg);
 }
 
-/* ── Panel ── */
+/* -- Panel -- */
 .hud__panel {
   width: 272px;
   background: var(--clr-surface);
@@ -206,7 +206,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  color: var(--clr-text-muted);
   position: relative;
   cursor: default;
   /* Locked = pixel grayscale */
@@ -217,10 +217,18 @@
               box-shadow 100ms steps(1);
 }
 
+.hud__achievement svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  color: currentColor;
+}
+
 .hud__achievement.unlocked {
   filter: none;
   border-color: var(--clr-xp);
   box-shadow: 2px 2px 0 0 #a07000;
+  color: var(--clr-xp);
 }
 
 .hud__achievement.unlocked:hover {
@@ -228,7 +236,7 @@
   box-shadow: 3px 3px 0 0 #a07000;
 }
 
-/* Inline tooltip panel — lives outside the scrollable grid so it's never clipped */
+/* Inline tooltip panel  -  lives outside the scrollable grid so it's never clipped */
 .hud__tooltip {
   margin-top: var(--space-2);
   padding: var(--space-2) var(--space-3);
@@ -278,7 +286,7 @@
   color: var(--clr-xp);
 }
 
-/* Mobile — center the HUD */
+/* Mobile  -  center the HUD */
 @media (max-width: 640px) {
   .hud {
     bottom: var(--space-4);
