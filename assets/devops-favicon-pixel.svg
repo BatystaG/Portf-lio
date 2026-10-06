@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="DevOps pixel art icon">
+  <rect width="64" height="64" fill="#111827"/>
+  <rect x="8" y="8" width="48" height="48" fill="#0b1020" stroke="#7c3aed" stroke-width="2"/>
+  <rect x="18" y="18" width="28" height="28" fill="none" stroke="#00d4ff" stroke-width="2"/>
+
+  <rect x="24" y="24" width="16" height="16" fill="#00d4ff"/>
+  <rect x="14" y="32" width="10" height="4" fill="#7c3aed"/>
+  <rect x="40" y="32" width="10" height="4" fill="#7c3aed"/>
+  <rect x="32" y="14" width="4" height="10" fill="#7c3aed"/>
+  <rect x="32" y="40" width="4" height="10" fill="#7c3aed"/>
+
+  <rect x="26" y="10" width="4" height="4" fill="#00d4ff"/>
+  <rect x="34" y="10" width="4" height="4" fill="#00d4ff"/>
+  <rect x="26" y="50" width="4" height="4" fill="#00d4ff"/>
+  <rect x="34" y="50" width="4" height="4" fill="#00d4ff"/>
+  <rect x="10" y="26" width="4" height="4" fill="#00d4ff"/>
+  <rect x="50" y="26" width="4" height="4" fill="#00d4ff"/>
+</svg>

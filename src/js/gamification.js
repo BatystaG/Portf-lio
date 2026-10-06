@@ -24,6 +24,7 @@ const ACHIEVEMENTS = [
   { id: 'github_click',   icon: 'search-code',    title: 'Fiscal do GitHub',            desc: 'Abriu meu perfil para investigar',                xp: 25 },
   { id: 'focused_30s',    icon: 'target',         title: 'Cadê o bug?',                 desc: 'Trinta segundos sem abrir outra aba',              xp: 20 },
   { id: 'stack_analyzed', icon: 'wrench',         title: 'Stack sob interrogatório',   desc: 'Nenhuma tecnologia saiu ilesa',                    xp: 25 },
+  { id: 'java_cert',      icon: 'wrench',         title: 'Java me ensinou humildade',  desc: 'Certificado concluído. O código funciona, a sanidade quase não.', xp: 35 },
   { id: 'early_bird',     icon: 'clock',          title: 'QA de madrugada',            desc: 'Rodou o teste antes do café. Audacioso',           xp: 30 },
   { id: 'form_started',   icon: 'pen-line',       title: 'Escreveu, apagou, repetiu',  desc: 'Requisito indefinido? Compreensível',             xp: 15 },
   { id: 'back_to_top',    icon: 'arrow-up',       title: 'Reproduziu o caminho todo',  desc: 'Voltou ao topo. Teste de regressão?',             xp: 10 },
@@ -278,6 +279,21 @@ export function initGamification() {
   document.querySelectorAll('#contact-form input, #contact-form textarea').forEach(el =>
     el.addEventListener('input', () => unlock('form_started'), { once: true })
   );
+
+  // -- Contact form ------------------------------------------
+  const contactModal = document.querySelector('#contact-modal');
+  contactModal?.querySelector('[data-contact-modal-close]')?.addEventListener('click', () => {
+    contactModal.close();
+  });
+
+  document.querySelector('#contact-form')?.addEventListener('submit', event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+
+    if (!form.reportValidity()) return;
+
+    contactModal?.showModal();
+  });
 
   // -- Early bird (00h-06h) ----------------------------------
   const hour = new Date().getHours();
